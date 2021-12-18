@@ -5,9 +5,9 @@ use yii\widgets\ActiveForm;
 $this->title = 'Send form page';
 ?>
 
-<?php $form = ActiveForm::begin();?>
-<?= $form->field($model, 'name')->label('Name')?>
-<?= $form->field($model, 'email')->input('Email')?>
-<?= $form->field($model, 'text')->label('Text message')?>
+<?php $form = ActiveForm::begin(['id' => 'SendForm']);?>
+<?= $form->field($model, 'name')?>
+<?= $form->field($model, 'email')?>
+<?= $form->field($model, 'text')->textarea()?>
 <?= Html::submitButton('Send message', ['class' => 'btn btn-success'])?>
 <?php ActiveForm::end();?>
