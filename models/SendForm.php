@@ -14,7 +14,9 @@ class SendForm extends Model
         return [
             [['name','email'],  'required'],
             ['email', 'email'],
-            ['text', 'string', 'min' => 3]
+            ['text', 'string', 'min' => 3],
+            ['name', 'customRules'],
+            [['name', 'email', 'text'], 'trim']
         ];
     }
 
@@ -25,5 +27,11 @@ class SendForm extends Model
             'email' => 'E-mail',
             'text' => 'Текст сообщения'
         ];
+    }
+
+    public function customRules($attr) {
+        if (in_array($this->$attr, ['hello', 'world'])){
+            $this->addError($attr, 'Это не имя пользователя!');
+        }
     }
 }

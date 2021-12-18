@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Send form page';
 ?>
 
-<?php $form = ActiveForm::begin(['id' => 'SendForm']);?>
+<?php $form = ActiveForm::begin(['id' => 'SendForm', 'action' => '/index.php?r=dev']);?>
 <?= $form->field($model, 'name')?>
 <?= $form->field($model, 'email')?>
 <?= $form->field($model, 'text')->textarea()?>
