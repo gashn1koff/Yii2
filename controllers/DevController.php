@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\SendForm;
 use Yii;
+use yii\data\Pagination;
 
 class DevController extends \yii\web\Controller
 {
@@ -21,7 +22,14 @@ class DevController extends \yii\web\Controller
     }
 
     public function actionShow() {
-        $category = Category::find()->all();
-        return $this->render('show', compact('category'));
+        $category = Category::find();
+        $pagination = new Pagination([
+            'defaultPageSize' => 50,
+            'totalCount' => $category->count()
+        ]);
+        $categories = $category->all();
+
+
+        return $this->render('show', compact('categories', 'pagination'));
     }
 }
