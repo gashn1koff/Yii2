@@ -6,13 +6,14 @@ use app\models\Category;
 use app\models\SendForm;
 use Yii;
 use yii\data\Pagination;
+use yii\web\Controller;
 
-class DevController extends \yii\web\Controller
+class DevController extends Controller
 {
     public function actionIndex () {
-        $model = new SendForm();
+        $model = SendForm::findOne(['id' => 4]);
         if ($model->load(\Yii::$app->request->post())) {
-            if ($model->validate()) {
+            if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Данные проверены!');
             } else {
                 Yii::$app->session->setFlash('error', 'Данные некорректные!');
@@ -27,9 +28,7 @@ class DevController extends \yii\web\Controller
             'defaultPageSize' => 50,
             'totalCount' => $category->count()
         ]);
-        $categories = $category->all();
-
-
+        $categories = Category::findOne(['id' => 1]);
         return $this->render('show', compact('categories', 'pagination'));
     }
 }
