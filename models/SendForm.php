@@ -3,12 +3,13 @@
 namespace app\models;
 
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class SendForm extends Model
+class SendForm extends ActiveRecord
 {
-    public $name;
-    public $email;
-    public $text;
+    public static function tableName() {
+        return 'posts';
+    }
 
     public function rules() {
         return [

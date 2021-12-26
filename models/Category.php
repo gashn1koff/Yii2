@@ -6,8 +6,11 @@ use yii\db\ActiveRecord;
 
 class Category extends ActiveRecord {
 
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'categories';
+    }
+
+    public function getProducts() {
+        return $this->hasMany(Product::class, ['category_id' => 'id']);
     }
 }
